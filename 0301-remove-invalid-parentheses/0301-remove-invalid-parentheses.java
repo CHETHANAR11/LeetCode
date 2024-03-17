@@ -6,12 +6,10 @@ class Solution {
         res = new ArrayList<>();
         mp = new HashMap<>();
     }
-
     public List<String> removeInvalidParentheses(String s) {
         solve(s, getMinInValid(s));
         return res;
     }
-
     private int getMinInValid(String s) {
         Stack<Character> stack = new Stack<>();
         for (char c : s.toCharArray()) {
@@ -27,7 +25,6 @@ class Solution {
         }
         return stack.size();
     }
-
     private void solve(String s, int minInv) {
         if (mp.containsKey(s)) return;
         else mp.put(s, 1);
