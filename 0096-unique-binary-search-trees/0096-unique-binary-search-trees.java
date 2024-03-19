@@ -1,17 +1,17 @@
 class Solution {
     public int numTrees(int n) {
-        return cat(n);
+        int[] dp = new int[n + 1];
+        return dp(n, dp);
     }
-    int cat(int n){
-        int[] cat=new int[n+1];
-        cat[0] =cat[1]=1;
-        
-        for(int i=2;i<=n;i++){
-            cat[i]=0;
-            for(int j=0;j<i;++j){
-                cat[i]+=cat[j]*cat[i-j-1];
-            }
+
+    public int dp(int n, int[] dp) {
+        if (n <= 1) return 1;
+        if (dp[n] != 0) return dp[n];
+        int ans = 0;
+        for (int i = 1; i <= n; i++) {
+            ans += dp(i - 1, dp) * dp(n - i, dp);
         }
-        return cat[n];
+        dp[n] = ans;
+        return ans;
     }
 }
